@@ -1,0 +1,130 @@
+
+<div class="col-xl-8 col-md-8">
+    <div class="card code-table">
+        <div class="card-header">
+            <h5>{{$title}}</h5>
+        </div>
+        <div class="card-block pb-0">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                    <tr>
+                        <th>Id Number</th>
+                        <th>Code</th>
+                        <th>Date</th>
+                        <th>Budget</th>
+                        <th>Status</th>
+                        <th class="text-right">Ratings</th>
+                    </tr></thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <h6 class="mb-1">#467</h6>
+                        </td>
+                        <td>
+                            <h6 class="mb-1">8765482</h6>
+                        </td>
+                        <td>
+                            <h6 class="m-b-0">November 14, 2017</h6>
+                        </td>
+                        <td>
+                            <h6 class="m-b-0">$ 874.23</h6>
+                        </td>
+                        <td><a href="#!" class="label theme-bg f-12 text-white">Active</a></td>
+                        <td class="text-right"><a href="#!"><i class="fa fa-star f-18 text-c-yellow"></i></a>
+                            <a href="#!"><i class="fa fa-star f-18 text-c-yellow"></i></a>
+                            <a href="#!"><i class="fa fa-star f-18 text-c-yellow"></i></a>
+                            <a href="#!"><i class="fa fa-star f-18 text-c-yellow"></i></a>
+                            <a href="#!"><i class="fa fa-star f-18 text-black-50"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h6 class="mb-1">#466</h6>
+                        </td>
+                        <td>
+                            <h6 class="mb-1">2366482</h6>
+                        </td>
+                        <td>
+                            <h6 class="m-b-0">November 13, 2017</h6>
+                        </td>
+                        <td>
+                            <h6 class="m-b-0">$ 235.34</h6>
+                        </td>
+                        <td><a href="#!" class="label theme-bg2 f-12 text-white">Not Active</a></td>
+                        <td class="text-right"><a href="#!"><i class="fa fa-star f-18 text-c-yellow"></i></a>
+                            <a href="#!"><i class="fa fa-star f-18 text-c-yellow"></i></a>
+                            <a href="#!"><i class="fa fa-star f-18 text-c-yellow"></i></a>
+                            <a href="#!"><i class="fa fa-star f-18 text-black-50"></i></a>
+                            <a href="#!"><i class="fa fa-star f-18 text-black-50"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h6 class="mb-1">#465</h6>
+                        </td>
+                        <td>
+                            <h6 class="mb-1">8832638</h6>
+                        </td>
+                        <td>
+                            <h6 class="m-b-0">October 14, 2017</h6>
+                        </td>
+                        <td>
+                            <h6 class="m-b-0">$ 233.46</h6>
+                        </td>
+                        <td><a href="#!" class="label theme-bg f-12 text-white">Active</a></td>
+                        <td class="text-right"><a href="#!"><i class="fa fa-star f-18 text-c-yellow"></i></a>
+                            <a href="#!"><i class="fa fa-star f-18 text-c-yellow"></i></a>
+                            <a href="#!"><i class="fa fa-star f-18 text-black-50"></i></a>
+                            <a href="#!"><i class="fa fa-star f-18 text-black-50"></i></a>
+                            <a href="#!"><i class="fa fa-star f-18 text-black-50"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h6 class="mb-1">#464</h6>
+                        </td>
+                        <td>
+                            <h6 class="mb-1">9632638</h6>
+                        </td>
+                        <td>
+                            <h6 class="m-b-0">December 17, 2017</h6>
+                        </td>
+                        <td>
+                            <h6 class="m-b-0">$ 133.46</h6>
+                        </td>
+                        <td><a href="#!" class="label theme-bg2 f-12 text-white">Not Active</a></td>
+                        <td class="text-right"><a href="#!"><i class="fa fa-star f-18 text-c-yellow"></i></a>
+                            <a href="#!"><i class="fa fa-star f-18 text-black-50"></i></a>
+                            <a href="#!"><i class="fa fa-star f-18 text-black-50"></i></a>
+                            <a href="#!"><i class="fa fa-star f-18 text-black-50"></i></a>
+                            <a href="#!"><i class="fa fa-star f-18 text-black-50"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h6 class="mb-1">#463</h6>
+                        </td>
+                        <td>
+                            <h6 class="mb-1">3332538</h6>
+                        </td>
+                        <td>
+                            <h6 class="m-b-0">July 14, 2017</h6>
+                        </td>
+                        <td>
+                            <h6 class="m-b-0">$ 244.46</h6>
+                        </td>
+                        <td><a href="#!" class="label theme-bg f-12 text-white">Active</a></td>
+                        <td class="text-right"><a href="#!"><i class="fa fa-star f-18 text-c-yellow"></i></a>
+                            <a href="#!"><i class="fa fa-star f-18 text-c-yellow"></i></a>
+                            <a href="#!"><i class="fa fa-star f-18 text-c-yellow"></i></a>
+                            <a href="#!"><i class="fa fa-star f-18 text-black-50"></i></a>
+                            <a href="#!"><i class="fa fa-star f-18 text-black-50"></i></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

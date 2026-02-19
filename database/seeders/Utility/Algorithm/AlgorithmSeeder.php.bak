@@ -1,0 +1,143 @@
+<?php
+
+namespace Database\Seeders\Utility\Algorithm;
+
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+class AlgorithmSeeder extends Seeder
+{
+    private $data = [
+        //
+        [
+            "id" => 1,
+            "algorithm_type_id" => 100,
+            "caption" => "الگوریتم 1: براساس موجودی انبارک و حداقل، حداکثر ظرفیت آن",
+            "directory_namespace" => "App\Models\LineProduct\Machine\RequestRawMaterialAlgorithm\Algorithm1WithInventoryAndMinMaxCapacity"],
+        [
+            "id" => 2,
+            "algorithm_type_id" => 100,
+            "caption" => "الگوریتم 2: بدون در نظر گرفتن موجودی انبارک و بر اساس حداقل، حداکثر ظرفیت انبارک ",
+            "directory_namespace" => "App\Models\LineProduct\Machine\RequestRawMaterialAlgorithm\Algorithm2WithMinMaxCapacity"],
+        [
+            "id" => 3,
+            "algorithm_type_id" => 100,
+            "caption" => "الگوریتم 3: بر اساس درخواست اپراتور ",
+            "directory_namespace" => "App\Models\LineProduct\Machine\RequestRawMaterialAlgorithm\Algorithm3OperatorRequest"
+        ],
+        [
+            "id" => 201,
+            "algorithm_type_id" => 200,
+            "caption" => 'الگوریتم 4: الگوریتم تخصیص براساس خاتمه یافته شدن کارت های پایین دستی',
+            "directory_namespace" => "App\Models\Utility\Algorithm\ProductionAllocation\Algorithm4ProductionAllocationToContractorByDownstreamTermination"
+        ],
+        [
+            "id" => 401,
+            "algorithm_type_id" => 400,
+            "caption" => 'الگوریتم بارکد 1: ساده و بدون مشخصات',
+            "directory_namespace" => ""
+        ],
+        [
+            "id" => 501,
+            "algorithm_type_id" => 500,
+            "caption" => 'الگوریتم 1: بر اساس سفارش مشتری',
+            "directory_namespace" => ""
+        ],
+        [
+            "id" => 502,
+            "algorithm_type_id" => 500,
+            "caption" => 'الگوریتم 2: بر اساس مصرف',
+            "directory_namespace" => ""
+        ],
+        [
+            "id" => 503,
+            "algorithm_type_id" => 500,
+            "caption" => 'الگوریتم 3: تولید غیر ارادی',
+            "directory_namespace" => ""
+        ],
+        [
+            "id" => 504,
+            "algorithm_type_id" => 500,
+            "caption" => 'الگوریتم 4: بر اساس سفارش سطح بالا',
+            "directory_namespace" => ""
+        ],
+        [
+            "id" => 505,
+            "algorithm_type_id" => 500,
+            "caption" => 'الگوریتم 5: بر اساس مصرف کانال تولید',
+            "directory_namespace" => ""
+        ],
+        [
+<<<<<<< HEAD
+            "id" => 601,
+            "algorithm_type_id" => 600,
+            "caption" => 'الگوریتم 1: بر اساس اولویت داف - لوگو',
+            "directory_namespace" => "NumberOfDoffAlgorithm1"
+        ],
+        [
+            "id" => 602,
+            "algorithm_type_id" => 600,
+            "caption" => 'الگوریتم 2: بر اساس اولویت لوگو - داف',
+            "directory_namespace" => "NumberOfDoffAlgorithm2"
+        ],
+=======
+            "id" => 301,
+            "algorithm_type_id" => 300,
+            "caption" => 'الگوریتم صدور کارت تولید به مقدار سفارش',
+            "directory_namespace" => ""
+        ],
+        [
+            "id" => 302,
+            "algorithm_type_id" => 300,
+            "caption" => 'الگوریتم صدور کارت تولید به مقدار PC ',
+            "directory_namespace" => ""
+        ],
+        [
+            "id" => 303,
+            "algorithm_type_id" => 300,
+            "caption" => 'الگوریتم صدور کارت تولید به مقدار سطح بالا',
+            "directory_namespace" => ""
+        ],
+        [
+            "id" => 701,
+            "algorithm_type_id" => 700,
+            "caption" => 'الگوریتم بر اساس مصرف مشابه دوره پیشین و رشد مصرف',
+            "directory_namespace" => ""
+        ],
+        [
+            "id" => 702,
+            "algorithm_type_id" => 700,
+            "caption" => 'نقطه سفارش ثابت',
+            "directory_namespace" => ""
+        ],
+        [
+            "id" => 801,
+            "algorithm_type_id" => 800,
+            "caption" => 'براساس مصرف مشابه دوره پیشین و رشد مصرف ',
+            "directory_namespace" => ""
+        ],
+        [
+            "id" => 802,
+            "algorithm_type_id" => 800,
+            "caption" => 'نقطه سفارش ثابت',
+            "directory_namespace" => ""
+        ],
+
+>>>>>>> 49efb6844859b8a8f8d88eff65ae83d8d8ace953
+
+    ];
+    private $table = 'algorithms';
+
+    public function run()
+    {
+
+        foreach ($this->data as $item) {
+            if (!DB::table($this->table)->where("id", $item["id"])->first()) {
+                DB::table($this->table)->insert($item);
+            } else {
+                DB::table($this->table)->where("id", $item["id"])->update($item);
+            }
+        }
+
+    }
+}

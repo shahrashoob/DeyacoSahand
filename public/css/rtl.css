@@ -1,0 +1,204 @@
+@font-face {
+    font-family: 'Sarb';
+    src: url('../fonts/fa/Sarbaz-Regular.eot');
+    src: url('../fonts/fa/Sarbaz-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/fa/Sarbaz-Regular.woff2') format('woff2'),
+        url('../fonts/fa/Sarbaz-Regular.woff') format('woff'),
+        url('../fonts/fa/Sarbaz-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'IS';
+    src: url('../fonts/fa/IS.eot');
+    src: url('../fonts/fa/IS.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/fa/IS.woff') format('woff'),
+        url('../fonts/fa/IS.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+body{
+    direction: rtl;
+    text-align: right;
+    font-family: "IRANSans";
+}
+.ml-50{
+    margin-left: initial;
+    margin-right: 50px;
+}
+.mr-3{
+    margin-right: initial;
+    margin-left: 1rem;
+}
+.text-left {
+    text-align: right!important;
+}
+.rtl{
+    direction: rtl;
+}
+.classy-navbar .nav-brand {
+    margin-right: initial;
+    margin-left: 30px;
+}
+.special-head:before {
+    left: initial;
+    right: 0;
+}
+.special-head {
+    padding-left: initial;
+    padding-right: 40px;
+    font-family: "IRANSans";
+
+}
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6{
+    font-family: "IRANSans";
+}
+p,.news .news-post .news-post-meta,.news .news-post .news-post-image .news-category > a{
+    font-family: "IRANSans";
+}
+.hero-section.blue-bg:before {
+    left: initial;
+    right: 0;
+    transform: rotate(-155deg);
+}
+.icon-img-box {
+    left: initial;
+    right: 0;
+}
+.services-block-four.v2 .inner-box {
+    padding-left: initial;
+    padding-right: 70px;
+}
+.check-mark-icon-font {
+    margin-right: initial;
+    margin-left: 2px;
+}
+.icon_foot:before {
+    border-left: 0;
+    border-right: 80px solid transparent;
+    right: initial;
+    left: 0px;
+}
+.icon_foot i {
+    right: initial;
+    left: 8px;
+}
+.light-version .service_single_content h6{
+    text-align: right;
+}
+
+.services-block-four .inner-box .step {
+    left: initial;
+    right: 0px;
+}
+.services-block-four.how .inner-box {
+    padding-left:initial;
+    padding-right: 70px;
+}
+.light-version .faq-timeline-area .align-items-center{
+    direction: ltr;
+}
+.agency-header span {
+    left: initial;
+    right: -25px;
+
+}
+.group label {
+    left:initial;
+    right: 0;
+}
+.contact_info_area .contact_info,.footer-copywrite-info{
+    text-align: right!important;
+}
+.footer-social-info a i {
+    margin-right: initial;
+    margin-left: 15px;
+}
+.agency-header {
+    padding-left: initial;
+    padding-right: 80px;
+}
+.check-mark-icon {
+    margin-right: initial;
+    margin-left: 16px;
+}
+.icon-font-box {
+    left: initial;
+    right: 0;
+}
+.feature_single_content .feature-info {
+    right: initial;
+    left: -35px;
+    text-align: right;
+}
+.feature_single_content .feature-info:before {
+    content: "\f177";
+    left: initial;
+    right: 14px;
+}
+.feature_single_content .feature-info:hover {
+    padding-left: initial;
+    padding-right: 48px;
+}
+.services-block-four.v3 .inner-box {
+    padding-left: initial;
+    padding-right: 70px;
+}
+.news .news-post .news-post-meta a i {
+    margin-right: initial;
+    margin-left: 5px;
+}
+.services-block-four .inner-box {
+    padding-left: initial;
+    padding-right: 100px;
+}
+#scrollUp {
+    right: initial;
+    left: 30px;
+}
+
+
+.breakpoint-on .classy-navbar .classy-menu {
+    left: initial;
+    right: -310px;
+}
+.classycloseIcon {
+    right: initial;
+    left: 20px;
+
+}
+.breakpoint-on .classynav ul li a {
+    padding: 0 10px;
+    padding-left: initial;
+    padding-right: 30px;
+    height: 38px;
+    line-height: 38px;
+}
+
+@media only screen and (max-width: 991px){
+.classy-navbar .classy-menu.menu-on {
+    left: initial;
+    right: 0;
+}}
+@media only screen and (max-width: 991px){
+.classy-navbar .classy-menu {
+
+    left: initial;
+    right: -310px;
+
+}}
+
+@media (min-width: 1200px){
+.col-lg-offset-1 {
+    margin-left: initial;
+    margin-right: 8.33333333%;
+}}
+@media (min-width: 992px){
+.offset-lg-1 {
+    margin-left: initial;
+    margin-right: 8.333333%;
+}}
+
+.error{
+    color:darkred;
+}

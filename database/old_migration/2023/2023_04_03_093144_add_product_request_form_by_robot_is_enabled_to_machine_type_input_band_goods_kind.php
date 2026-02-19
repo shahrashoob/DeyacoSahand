@@ -1,0 +1,30 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class AddProductRequestFormByRobotIsEnabledToMachineTypeInputBandGoodsKind extends Migration {
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up() {
+        Schema::table( 'machine_type_input_band_goods_kind', function ( Blueprint $table ) {
+            //
+            $table->integer( "product_request_form_by_robot_is_enabled" )->default( 0 )->comment( "آیا درخواست کالا به انبار توسط دستیار دیجیتال در ابتدا فعال باشد؟" );
+        } );
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down() {
+        Schema::table( 'machine_type_input_band_goods_kind', function ( Blueprint $table ) {
+            //
+        } );
+    }
+}

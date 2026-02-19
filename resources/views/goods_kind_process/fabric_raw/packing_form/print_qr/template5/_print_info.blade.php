@@ -1,0 +1,175 @@
+<div style="text-align: center; width: 100%;padding:6px;font-size: 0.02px">
+    {!! $barcode_pin !!}
+</div>
+<div class="content">
+
+    <table style="width: 100%;">
+        <tr>
+            @if($packing_form->packing_type->label_caption!="")
+                <td>
+                    {{$packing_form->packing_type->label_caption=="system"?$software_name:$packing_form->packing_type->label_caption}}
+                </td>
+            @else
+                <td style="border-bottom: none"></td>
+            @endif
+            <td rowspan="3" style="border: none">
+                <table style="border: none">
+                    <tr>
+                        <th style="border: none; font-size: 10px" text-rotate="90">هیچ ادعایی پس از برش پذیرفته نمی
+                            شود
+                        </th>
+
+                    </tr>
+                </table>
+
+            </td>
+        </tr>
+
+
+        <tr>
+            <td style="border-top: none;padding-right: 3px;">
+                <table style="border: none">
+
+                    <tr>
+                        <td style="border: none; text-align: right; font-size: 11px;padding-right: 3px;">
+
+                            کد کالا:
+                            {{$packing_form->items->first()->product->code}}
+                            <br/>
+                            شماره بسته بندی: {{$packing_form->getCode()}}
+
+                            @php $row=1;@endphp
+                            @if(count($packing_form->items)>1)
+                                <br/>
+                                @foreach($packing_form->items as $item)
+                                    آیتم
+                                    {{$row++}}:
+                                    @if($packing_form->packing_type->printer_unit_display_type_id ==1)
+                                        {{round($item->final_amount,2)}}
+                                        {{$packing_form->getUnitCaption("unit","caption")}},
+                                    @else
+                                        {{round($item->sub_amount,2)}}
+                                        {{$packing_form->getUnitCaption("sub_unit","caption")}},
+                                    @endif
+                                @endforeach
+                            @endif
+
+                            <br/>
+                            سریال تولید:
+                            {{$packing_form->items->first()->production_form_item->production->serial??""}}
+
+                            <br/>
+                            @if($packing_form->items->first() && isset($packing_form->items->first()->production_form_item->production->order) && $packing_form->items->first()->production_form_item->production->order)
+                                ردیف سفارش:
+                                {{$packing_form->items->first()->production_form_item->production->order->getCodeByProductRow(
+                                        $packing_form->items->first()->product_id,
+                                        $packing_form->packing_type_id,
+
+                                    )
+                                    }}
+                            @endif
+                            <table style="border: none;">
+                                <tr>
+                                    <td style="border: none;text-align: right;font-size: 11px;">
+                                        کد طرح:
+                                        {{$packing_form->items->first()->product->getPropertyValue(220337,"value",true,false)}}
+                                    </td>
+                                    <td style="border: none;font-size: 11px;text-align: right">
+                                        کد رنگ:
+                                        {{$packing_form->items->first()->product->getPropertyValue(220338,"value",true,false)}}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border: none;font-size: 11px;text-align: right">
+                                        درجه:
+                                        {{$packing_form->items->first()->degree->caption}}
+                                    </td>
+                                    <td style="border: none;font-size: 11px;text-align: right">
+                                        لات:
+                                        {{$packing_form->items->first()->lot_number->code}}
+                                    </td>
+                                </tr>
+
+                            </table>
+
+                        </td>
+                        <td style="border: none; text-align: center;font-size: .01px;width: 80px;padding-left: 3px;">
+                            <div style="float: left;">
+                                {{$qr}}
+                            </div>
+                        </td>
+
+
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="border: none;">
+                            <table style="border: none;">
+                                <tr>
+                                    <td style="border: none;font-size: 11px;text-align: right">
+                                        @include("goods_kind_process.fabric_raw.packing_form.print_qr._printer_unit_display_type",["caption_unit"=>"مقدار کل:"])
+
+                                        @if(isset($unconfirmed_data))
+                                            (تایید نشده)
+                                        @endif
+                                    </td>
+                                    <td style="border: none;font-size: 11px;text-align: right">
+                                        وزن ناخالص:
+                                        @if($packing_form->gross_weight!=0)
+                                            <span style="font-size: 16px; display: inline">
+                                                {{round($packing_form->gross_weight,2)}}
+                                            </span>
+                                            کیلوگرم
+                                        @endif
+
+                                    </td>
+                                </tr>
+                                @php $order_list=$packing_form->items->first()->production_form_item->production->order_list??null;@endphp
+                                @if($order_list)
+                                    <tr>
+                                        <td colspan="2" style="border: none;font-size: 11px;text-align: right">
+                                            کد کالای مقصد:
+
+                                            {{$order_list->destination_product_code??""}}
+
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="border: none;font-size: 11px;text-align: right">
+                                            کد پیگیری 1:
+
+                                            {{$order_list->tracking_code1??""}}
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2" style="border: none;font-size: 11px;text-align: right">
+                                            کد پیگیری 2:
+
+
+                                            {{$order_list->tracking_code2??""}}
+                                        </td>
+
+                                    </tr>
+                                @endif
+                            </table>
+                        </td>
+                    </tr>
+
+                </table>
+            </td>
+            <td style="border: none"></td>
+        </tr>
+
+
+    </table>
+</div>
+
+
+
+<div style="text-align: center; width: 100%;padding:5px;font-size: 0.02px">
+    {!! $barcode !!}
+</div>
+<div style="text-align: center; width: 100%;font-size: 11px">
+    سازمان دیجیتال دیاکو
+</div>

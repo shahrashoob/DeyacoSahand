@@ -1,0 +1,139 @@
+@extends('layouts.admin._master')
+@section("page_header_title","داشبورد جاری فروش ")
+@section("content")
+    <div class="row">
+
+        <div class="col-sm-12">
+            @include("sales.public._search_view",["route"=>"sales.dashboard.index"])
+            <div class="card">
+                <div class="card-header">
+                    <h5>لیست سفارش ها</h5>
+                </div>
+                <div class="card-block">
+
+                    <div class="table-responsive">
+                        <table class="table table-styling center">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th></th>
+                                <th>کد سفارش</th>
+                                <th>نام مرکز</th>
+                                <th>کانال توزیع</th>
+                                <th> استان</th>
+                                <th>تعداد روز در<br/> انتظار ارسال</th>
+                                <th> اولویت سفارش</th>
+                                <th> وضعیت</th>
+                                @if($post_user->checkButtonPermission("sales.register_xml"))
+                                    <th>XML</th>
+                                @endif
+                                @if($post_user->checkButtonPermission("sales.show_address_on_index"))
+                                    <th>نشانی ارسال بار</th>
+                                @endif
+                            </tr>
+
+                            </thead>
+                            <tbody>
+                            @php $row=$list->firstItem();@endphp
+                            @foreach($list as $item)
+                                <tr>
+                                    <td>{{$row++}}</td>
+                                    <td>
+                                        <a data-toggle="modal" class="order-modal" data-target="#exampleModalLong"
+                                           data-id="{{$item->id}}" href="#!"><i
+                                                    class="fas fa-desktop"></i>
+                                        </a>
+
+                                            &nbsp;
+                                            <a href="{{route("sales.product_request_permission.index",$item)}}"><i
+                                                        class="fa fa-shopping-basket"></i>
+                                            </a>
+
+
+                                    </td>
+                                    <td>
+                                        <a href="{{route("sales.dashboard.view_order",$item->id)}}">{{$item->code()}}</a>
+
+                                    </td>
+                                    <td>{{$item->customer->caption??""}}</td>
+                                    <td>{{$item->customer->channelType->caption??""}}</td>
+                                    <td>{{$item->customer->province->caption??""}}</td>
+                                    <td>{{$item->number_of_days_waiting()}}</td>
+                                    <td>{{$item->priority->caption??""}}</td>
+                                    <td>
+
+                                        <a href="{{route("sales.dashboard.log",$item->id)}}">{{$item->getStatus(1)}}</a>
+                                    </td>
+                                    @if($post_user->checkButtonPermission("sales.register_xml"))
+                                        <td>
+                                            <a href="{{route("sales.dashboard.register_xml",$item)}}"
+                                               class="text-success"><i class="fa fa-cash-register"></i>
+
+                                                {{$item->register_xml_status_id== 523000200 ?$item->register_xml_code:"ثبت کد xml"}}
+                                            </a>
+                                        </td>
+                                    @endif
+                                    @if($post_user->checkButtonPermission("sales.show_address_on_index"))
+                                        <td>
+                                            {{$item->address->address??""}}
+
+                                        </td>
+                                    @endif
+
+
+                                </tr>
+                            @endforeach
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <div class="float-left">
+                        نمايش رکوردهای
+                        <b>{{$list->firstItem()}}</b>
+                        تا
+                        <b>{{$list->lastItem()}}</b>
+                        از
+                        <b>{{$list->total()}}</b>
+                        رکورد موجود
+
+
+                    </div>
+                </div>
+                <div class="text-center">
+                    {{$list->links('pagination::bootstrap-4')}}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+@endsection
+@section("styles")
+    <script src="{{asset("assets/plugins/autocomplet/jquery.immybox.js")}}"></script>
+    <link rel="stylesheet" href="{{asset("assets/plugins/autocomplet/immybox.css")}}"/>
+    @include("component.modal.md-modal._style")
+    <style>
+        .modal-dialog{
+            max-width: 1500px;
+            margin: auto;
+        }
+    </style>
+@endsection
+@section("scripts")
+    @include("component.modal.md-modal._script")
+@endsection
+@section("modals")
+
+
+    @include("component.modal._dynamic",[
+        "id"=>"16",
+        "theme"=>"",
+        "title"=>" جزئیات سفارش",
+        "content"=>"OK",
+        "btn_class"=>"btn-danger",
+        "btn_title"=>"",
+        "token_api"=>$token_api,
+        "url"=>route("api.order_api.get_desktop_info_api",[0, 1])
+    ])
+
+@endsection

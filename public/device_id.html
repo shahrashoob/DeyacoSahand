@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="fa">
+<head>
+  <meta charset="utf-8" />
+  <title>Fingerprint + WebGL = Device ID</title>
+</head>
+<body>
+<!-- FingerprintJS -->
+<script src="https://cdn.jsdelivr.net/npm/@fingerprintjs/fingerprintjs@3/dist/fp.min.js"></script>
+<!-- CryptoJS برای هش -->
+<script src="https://cdn.jsdelivr.net/npm/crypto-js@4.2.0/crypto-js.min.js"></script>
+
+<script>
+(async () => {
+  // Helper: گرفتن اطلاعات WebGL
+  function getWebGLInfo() {
+    try {
+      const canvas = document.createElement('canvas');
+      const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+      if (!gl) return {vendor: null, renderer: null};
+      const dbgRenderInfo = gl.getExtension('WEBGL_debug_renderer_info');
+      const vendor = dbgRenderInfo ? gl.getParameter(dbgRenderInfo.UNMASKED_VENDOR_WEBGL) : null;
+      const renderer = dbgRenderInfo ? gl.getParameter(dbgRenderInfo.UNMASKED_RENDERER_WEBGL) : null;
+      return {vendor, renderer};
+    } catch {
+      return {vendor: null, renderer: null};
+    }
+  }
+
+  // Helper: هش SHA-256 با CryptoJS
+  function sha256Hex(message) {
+    return CryptoJS.SHA256(message).toString(CryptoJS.enc.Hex);
+  }
+
+  // بارگذاری FingerprintJS
+  const fp = await FingerprintJS.load();
+  const result = await fp.get();
+  const fpId = result.visitorId || '';
+
+  // ویژگی‌های اضافی
+  const webgl = getWebGLInfo();
+  const hwConcurrency = navigator.hardwareConcurrency || 'unknown';
+  const deviceMemory = navigator.deviceMemory || 'unknown';
+  const platform = navigator.platform || 'unknown';
+  const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || 'unknown';
+  const userAgent = navigator.userAgent || 'unknown';
+
+  // ترکیب همه
+  const combined = [
+    'fpId:' + fpId,
+    'webglVendor:' + (webgl.vendor || 'null'),
+    'webglRenderer:' + (webgl.renderer || 'null'),
+    'hwConcurrency:' + hwConcurrency,
+    'deviceMemory:' + deviceMemory,
+    'platform:' + platform,
+    'timezone:' + timezone,
+    'ua:' + userAgent
+  ].join('|');
+
+  // هش نهایی
+  const finalId = sha256Hex(combined);
+
+  // نمایش
+  console.log('FingerprintJS visitorId:', fpId);
+  console.log('Combined raw:', combined);
+  console.log('Final device id (SHA-256 hex):', finalId);
+
+  alert('شناسه دستگاه (تقریبی): ' + finalId);
+
+})();
+</script>
+</body>
+</html>

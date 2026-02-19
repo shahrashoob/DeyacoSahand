@@ -1,0 +1,29 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::table('machine_allocation', function (Blueprint $table) {
+            //
+            $table->double('allocation_sub_amount')->after('allocation_amount')->comment("مقدار تخصیص در واحد فرعی")->nullable();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::table('machine_allocation', function (Blueprint $table) {
+            //
+        });
+    }
+};

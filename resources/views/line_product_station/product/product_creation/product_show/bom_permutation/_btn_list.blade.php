@@ -1,0 +1,12 @@
+<div class="col-sm-12">
+    <a href="{{route("line_product_station.product.product_creation.dashboard.view",$product_creation_process)}}" class="btn btn-outline-dark">بازگشت به
+        فرم طراحی</a>
+    <a href="{{route("line_product_station.product.product_creation.product_show.bom.index",$product_creation_process)}}" class="btn btn-outline-dark">
+        مرحله
+        قبل </a>
+
+    <a href="{{route("line_product_station.product.product_creation.product_show.replace_product.index",$product_creation_process)}}" class="btn btn-outline-dark">
+        مرحله
+        بعد</a>
+
+</div>

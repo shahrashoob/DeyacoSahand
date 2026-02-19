@@ -1,0 +1,69 @@
+<?php
+
+namespace App\Http\Controllers\GoodsKindProcess\Warps\KarlMayer\Machine;
+
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\GoodsKindProcess\General\Machine\GeneralMaterialDeliveryConfirmationController;
+use App\Models\LineProduct\Machine\Machine;
+use Illuminate\Http\Request;
+
+class MaterialDeliveryConfirmationController extends Controller {
+    public static $info = [
+        "route"         => "warps.karl_mayer.machine.material_delivery_confirmation.",
+        "enable_status" =>["001","002","003","004","005","006","007","008","009","010","011","012" ],
+        "button"        => [ "caption" => "تایید تحویل مواد اولیه از انبار", "class" => "btn-success" ],
+        "view_path"     => "goods_kind_process.warps.karl_mayer.machine.material_delivery_confirmation.",
+    ];
+    var $view_path;
+    var $route_path;
+    var $dashboard_route = "warps.karl_mayer.machine.dashboard.";
+
+    public function __construct() {
+        $this->route_path = MaterialDeliveryConfirmationController::$info["route"];
+        $this->view_path  = MaterialDeliveryConfirmationController::$info["view_path"];
+    }
+
+    public function index( Machine $machine ) {
+
+        $result = $this->checkPermission( $machine );
+        if ( $result != "" ) {
+            return $result;
+        }
+
+        $publicController = $this->getGeneralController();
+
+        return $publicController->index(  $machine );
+
+
+    }
+
+    public function submit( Request $request, Machine $machine ) {
+        $result = $this->checkPermission( $machine );
+        if ( $result != "" ) {
+            return $result;
+        }
+
+        $publicController = $this->getGeneralController();
+
+        return $publicController->submit( $request, $machine );
+    }
+
+
+    public function getGeneralController() {
+        $publicController                  = new GeneralMaterialDeliveryConfirmationController();
+        $publicController->route_path      = $this->route_path;
+        $publicController->dashboard_route = $this->dashboard_route;
+
+        return $publicController;
+    }
+
+    public function checkPermission( Machine $machine ) {
+
+        $result = DashboardController::checkPermissionConditions( $machine, MaterialDeliveryConfirmationController::$info );
+        if ( ! $result["result"] ) {
+            return back()->withErrors( $result["message"] );
+        }
+
+        return "";
+    }
+}

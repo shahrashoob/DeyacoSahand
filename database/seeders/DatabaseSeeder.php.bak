@@ -1,0 +1,268 @@
+<?php
+
+
+namespace Database\Seeders;
+
+use App\Models\Utility\SeederDatabase;
+use Database\Seeders\Accounting\AccountSeeder;
+use Database\Seeders\GoodsKind;
+use Database\Seeders\GoodsKind\Dobby\DobbySeeder1;
+use Database\Seeders\GoodsKind\FabricRaw\Dobby\DobbySeeder;
+use Database\Seeders\GoodsKind\FabricRaw\Jacquard\JacquardSeeder;
+use Database\Seeders\GoodsKind\FabricRawSeeder;
+use Database\Seeders\GoodsKind\FabricRawTypeOfCutSeeder;
+use Database\Seeders\GoodsKind\Warps\WarpsSeeder;
+use Database\Seeders\LineProductStation;
+use Database\Seeders\OldSeeder;
+use Database\Seeders\HR;
+use Database\Seeders\Utility;
+use Illuminate\Database\Seeder;
+
+class DatabaseSeeder extends Seeder
+{
+    /**
+     * Seed the application's database.
+     *
+     * @return void
+     */
+    public function run()
+    {
+
+        $seeder_list = [
+            ["version" => 6, "seeder" => OldSeeder\MessageTypeSeeder::class],
+            ["version" => -1, "seeder" => OldSeeder\StatusSeeder::class],
+            ["version" => 3, "seeder" => OldSeeder\StatusTypeSeeder::class],
+            ["version" => 5, "seeder" => OldSeeder\UnitSeeder::class],
+            ["version" => 2, "seeder" => OldSeeder\UnitOfMeasureTypeSeeder::class],
+            ["version" => 4, "seeder" => OldSeeder\UnitTypeSeeder::class],
+            ["version" => 1, "seeder" => OldSeeder\OrderTypeSeeder::class],
+            ["version" => 1, "seeder" => OldSeeder\SupplyTypeSeeder::class],
+            ["version" => 12, "seeder" => OldSeeder\SupplierSeeder::class],
+            ["version" => 12, "seeder" => OldSeeder\MenuTypeSeeder::class],
+            ["version" => 73, "seeder" => OldSeeder\MenuSeeder::class],
+            ["version" => 1, "seeder" => OldSeeder\GoodsTypeSeeder::class],
+
+            ["version" => 1, "seeder" => OldSeeder\ChannelTypeSeeder::class],
+            ["version" => 1, "seeder" => OldSeeder\PrioritySeeder::class],
+            // ["version"=>1,"seeder"=> OldSeeder\ProductTypeSeeder::class],
+            ["version" => 1, "seeder" => OldSeeder\OrderSeeder::class],
+            ["version" => 2, "seeder" => OldSeeder\PostSeeder::class],
+            ["version" => -1, "seeder" => OldSeeder\MenuPermissionSeeder::class],
+            ["version" => 1, "seeder" => OldSeeder\PostUserSeeder::class],
+            ["version" => 1, "seeder" => OldSeeder\LineGroupSeeder::class],
+//        ["version"=>1,"seeder"=> OldSeeder\ CitySeeder::class ],
+            ["version" => 1, "seeder" => OldSeeder\ProvinceSeeder::class],
+            ["version" => 1, "seeder" => OldSeeder\StateSeeder::class],
+            ["version" => 1, "seeder" => OldSeeder\CurrencySeeder::class],
+            ["version" => 1, "seeder" => OldSeeder\FactorySeeder::class],
+            ["version" => -1, "seeder" => OldSeeder\ButtonSeeder::class],
+            ["version" => 1, "seeder" => OldSeeder\ButtonPostSeeder::class],
+            ["version" => 1, "seeder" => OldSeeder\OrderKindSeeder::class],
+            ["version" => 4, "seeder" => OldSeeder\TransKindSeeder::class],
+            ["version" => 1, "seeder" => OldSeeder\OppKindSeeder::class],
+            ["version" => 1, "seeder" => OldSeeder\EntryTypeSeeder::class],
+            ["version" => 1, "seeder" => OldSeeder\OrderPermissionTypeSeeder::class],
+            ["version" => 1, "seeder" => OldSeeder\CustomerTypeSeeder::class],
+            ["version" => 2, "seeder" => OldSeeder\GenderSeeder::class],
+            ["version" => 1, "seeder" => OldSeeder\UserTypeSeeder::class],
+            ["version" => 5, "seeder" => OldSeeder\CarTypeSeeder::class],
+            ["version" => 1, "seeder" => OldSeeder\DoorSeeder::class],
+            ["version" => 84, "seeder" => OldSeeder\SettingSeeder::class],
+//   **     ["version"=>1,"seeder"=> OldSeeder\ OrganizationCategory2Seeder::class ],
+            ["version" => 2, "seeder" => OldSeeder\CustomerSeeder::class],
+            ["version" => 1, "seeder" => OldSeeder\FileTypeSeeder::class],
+            ["version" => 1, "seeder" => OldSeeder\UserSeeder::class],
+            ["version" => 1, "seeder" => OldSeeder\ReplaceTypeSeeder::class],
+            ["version" => 1, "seeder" => OldSeeder\FieldTypeSeeder::class],
+            ["version" => 1, "seeder" => OldSeeder\ProductionAlgorithmTypeSeeder::class],
+            ["version" => 1, "seeder" => OldSeeder\TicketTypeSeeder::class],
+
+            ["version" => 1, "seeder" => OldSeeder\MachineContourUnitSeeder::class],
+            ["version" => 8, "seeder" => OldSeeder\MachineEventSeeder::class],
+            ["version" => 1, "seeder" => OldSeeder\ShiftWorkSeeder::class],
+            ["version" => 1, "seeder" => OldSeeder\ShiftSeeder::class],
+            ["version" => 1, "seeder" => OldSeeder\CountrySeeder::class],
+            ["version" => 1, "seeder" => OldSeeder\DegreeTypeSeeder::class],
+            ["version" => 1, "seeder" => OldSeeder\HeadOfCheckTypeSeeder::class],
+            ["version" => 1, "seeder" => OldSeeder\CheckDeliveryTimeTypeSeeder::class],
+            ["version" => 1, "seeder" => OldSeeder\StationOperationSeeder::class],
+            ["version" => 6, "seeder" => OldSeeder\StationOperationCategorySeeder::class],
+            ["version" => 1, "seeder" => OldSeeder\MaintenanceTypeSeeder::class],
+            ["version" => 54, "seeder" => OldSeeder\EventSeeder::class],
+            ["version" => 5, "seeder" => OldSeeder\MachinePropertySeeder::class],
+            ["version" => 5, "seeder" => OldSeeder\ApplicantTypesSeeder::class],
+
+            ["version" => 2, "seeder" => LineProductStation\BOMItemEnteringTypeSeeder::class],
+            ["version" => 7, "seeder" => LineProductStation\MachineModuleTypeSeeder::class],
+<<<<<<< HEAD
+            ["version" => 36, "seeder" => LineProductStation\PackingTypeLablePrintingTypeSeeder::class],
+=======
+            ["version" => 40, "seeder" => LineProductStation\PackingTypeLablePrintingTypeSeeder::class],
+>>>>>>> packing-form-bundle
+            ["version" => 3, "seeder" => LineProductStation\MachineProductPropertySeeder::class],
+            ["version" => 2, "seeder" => LineProductStation\MachineProductPropertyOptionSeeder::class],
+            ["version" => 1, "seeder" => LineProductStation\RejectProductReasonTypeSeeder::class],
+            ["version" => 1, "seeder" => LineProductStation\TypeOfSaleOfProductSeeder::class],
+            ["version" => 1, "seeder" => LineProductStation\ProductServiceTypeSeeder::class],
+            ["version" => 1, "seeder" => LineProductStation\StationOperationTypeSeeder::class],
+            ["version" => 1, "seeder" => LineProductStation\ReservoirTypeSeeder::class],
+            ["version" => -1, "seeder" => LineProductStation\ProductCreationProcessSeeder::class],
+            ["version" => 21, "seeder" => LineProductStation\MachineModuleTypePropertySeeder::class],
+            ["version" => 1, "seeder" => LineProductStation\MachineTypeCalculationMethodSeeder::class],
+            ["version" => 3, "seeder" => LineProductStation\WarehouseTypeSeeder::class],
+            ["version" => 4, "seeder" => LineProductStation\WarehouseStorageTypeSeeder::class],
+            ["version" => 2, "seeder" => LineProductStation\GoodsKindSeeder::class],
+            ["version" => 2, "seeder" => LineProductStation\DischargeTypeSeeder::class],
+            ["version" => 1, "seeder" => LineProductStation\WasteTypeSeeder::class],
+            ["version" => 1, "seeder" => LineProductStation\MachineTypeConsumptionTypeSeeder::class],
+            ["version" => 2, "seeder" => LineProductStation\RawMaterialRequestAlgorithmTypeSeeder::class],
+            ["version" => 1, "seeder" => LineProductStation\MachineAllocationModificationTypeSeeder::class],
+            ["version" => -1, "seeder" => LineProductStation\GoodsKindSettingSeeder::class],
+            ["version" => 3, "seeder" => LineProductStation\ActualCostTypeSeeder::class],
+            ["version" => 4, "seeder" => LineProductStation\BOMDependencyTypeSeeder::class],
+            ["version" => 1, "seeder" => LineProductStation\MachineFaultTypeSeeder::class],
+
+            ["version" => 1, "seeder" => Utility\PermissionTypeSeeder::class],
+            ["version" => 1, "seeder" => Utility\SpecialUnitTypeSeeder::class],
+            ["version" => 2, "seeder" => Utility\SpecialUniSeeder::class],
+            ["version" => 1, "seeder" => Utility\ContractorPropertiesSeeder::class],
+            ["version" => 1, "seeder" => Utility\SellingTypeSeeder::class],
+            ["version" => 2, "seeder" => Utility\PaymentMethodTypeSeeder::class],
+            ["version" => 9, "seeder" => Utility\ScriptSeeder::class],
+            ["version" => 4, "seeder" => Utility\CooperationTypeSeeder::class],
+            ["version" => 2, "seeder" => Utility\SmartObjectTypeSeeder::class],
+            ["version" => 1, "seeder" => Utility\ShiftDeliveryModuleSeeder::class],
+            ["version" => 2, "seeder" => Utility\AllocationDataTypeSeeder::class],
+            ["version" => 1, "seeder" => Utility\MethodOfSendingProductSeeder::class],
+            ["version" => 1, "seeder" => Utility\PrinterTypeSeeder::class],
+            ["version" => 1, "seeder" => Utility\ContractorSupplyTypeSeeder::class],
+            ["version" => 2, "seeder" => Utility\OfficeAutomationToDoTypeSeeder::class],
+            ["version" => 1, "seeder" => Utility\PriorityTypeSeeder::class],
+            ["version" => 1, "seeder" => Utility\RealityTypeSeeder::class],
+            ["version" => 1, "seeder" => Utility\FinancialSoftwareSeeder::class],
+            ["version" => 1, "seeder" => Utility\PrinterUnitDisplayTypeSeeder::class],
+            ["version" => 1, "seeder" => Utility\FinancialSoftwareTransKindTypeSeeder::class],
+            ["version" => 1, "seeder" => Utility\FactoryEnteryTeypeSeeder::class],
+            ["version" => 1, "seeder" => Utility\ReportSeeder::class],
+            ["version" => 1, "seeder" => Utility\TrasnportTypeSeeder::class],
+            ["version" => 1, "seeder" => Utility\SupplierTypeSeeder::class],
+            ["version" => 16, "seeder" => Utility\SpecialLicenseTypeSeeder::class],
+            ["version" => 5, "seeder" => Utility\UserDeviceTypeSeeder::class],
+            ["version" => 2, "seeder" => Utility\QueueOfLargeOperationTypeSeeder::class],
+
+            ["version" => 2, "seeder" => Utility\Algorithm\AlgorithmTypeSeeder::class],
+            ["version" => 11, "seeder" => Utility\Algorithm\AlgorithmSeeder::class],
+
+
+            ["version" => 5, "seeder" => Utility\DocumentTypeSeeder::class],
+            ["version" => 2, "seeder" => Utility\Document\DocumentReceiveStepSeeder::class],
+            ["version" => 5, "seeder" => Utility\Document\DocumentReceiveStepDocumentTypeSeeder::class],
+
+            ["version" => 3, "seeder" => Utility\Contract\ContractTypeSeeder::class],
+            ["version" => 3, "seeder" => Utility\Contract\ContractKeywordSeeder::class],
+
+            ["version" => 5, "seeder" => Utility\SoftwareSystem\SoftwareSystemSeeder::class],
+            ["version" =>3, "seeder" => Utility\IcVersionSeeder::class],
+
+            ["version" =>9, "seeder" => Utility\Notification\SMSTemplateSeeder::class],
+            ["version" =>2, "seeder" => Utility\Notification\SMSTemplateGroupSeeder::class],
+
+
+            ["version" =>3, "seeder" => Utility\Warehouse\WarehouseShelvingTypeSeeder::class],
+
+            ["version" => -1, "seeder" => OldSeeder\ProductRequestFormStatusSeeder::class],
+            ["version" => 6, "seeder" => LineProductStation\CarrierGroupSeeder::class],
+
+            // Goods Kind Process Seeder
+            ["version" => 2, "seeder" => GoodsKind\GoodsKindLotNumberPropertySeeder ::class],
+
+
+            // Fabric
+            ["version" => -1, "seeder" => GoodsKind\Fabric\FabricSeeder ::class],
+            ["version" => -1, "seeder" => GoodsKind\Fabric\SpecialProduction\SpecialProductionSeeder ::class],
+            ["version" => -1, "seeder" => GoodsKind\Fabric\FinishingMachine\FinishingMachineSeeder ::class],
+            //FabricRaw
+            ["version" => -1, "seeder" => GoodsKind\FabricRaw\FabricRawTypeOfCutSeeder ::class],
+            ["version" => -1, "seeder" => GoodsKind\FabricRaw\FabricRawSeeder ::class],
+            ["version" => -1, "seeder" => GoodsKind\FabricRaw\MachineOffReasonSeeder ::class],
+
+            ["version" => -1, "seeder" => DobbySeeder::class],
+            ["version" => -1, "seeder" => JacquardSeeder::class],
+
+
+            // Warps
+            ["version" => -1, "seeder" => WarpsSeeder::class],
+            ["version" => -1, "seeder" => GoodsKind\Warps\Matthys\MatthysSeeder::class],
+            ["version" => -1, "seeder" => GoodsKind\Warps\KarlMayer\KarlMayerSeeder::class],
+
+            //
+
+            ["version" => 1, "seeder" => OldSeeder\EditIncorrectValueSeeder::class],
+
+            ["version" => 1, "seeder" => OldSeeder\GoodsKindClassificationTypeSeeder::class],
+            ["version" => 1, "seeder" => OldSeeder\ProductRouteSeeder::class],
+            ["version" => 14, "seeder" => LineProductStation\ProductionChannelTypeSeeder::class],
+        
+            ["version" => 1, "seeder" => LineProductStation\ProductionTypeSeeder::class],
+            ["version" => 2, "seeder" => LineProductStation\ProductRequestFormTypeSeeder::class],
+
+            // HR
+            ["version" => 2, "seeder" => Hr\LeaveOvertimeTypesSeeder::class],
+            ["version" => 3, "seeder" => Hr\LeaveOvertimeGroupSeeder::class],
+            ["version" => -1, "seeder" => Hr\PostEntryStatusSeeder::class],
+            ["version" => 1, "seeder" => Hr\SplitShiftTypeSeeder::class],
+            ["version" => 2, "seeder" => Hr\ShiftWorkGroupTypeSeeder::class],
+            ["version" => 1, "seeder" => Hr\WorkDayTypeSeeder::class],
+            ["version" => 1, "seeder" => Hr\FloatingPostTypeSeeder::class],
+            ["version" => -1, "seeder" => Hr\UserButtonSeeder::class],
+            ["version" => 2, "seeder" => Hr\EducationTypeSeeder::class],
+            ["version" => 2, "seeder" => Hr\EvaluationCompletionTypeSeeder::class],
+            ["version" => -1, "seeder" => Hr\EmploymentProcessSeeder::class],
+            ["version" => 2, "seeder" => Hr\EvaluationTypeSeeder::class],
+            ["version" => 4, "seeder" => Hr\AcademicDegreeTypeSeeder::class],
+            ["version" => 1, "seeder" => Hr\FeildOfAcademicDegreeSeeder::class],
+            ["version" => 1, "seeder" => Hr\ExamTypeSeeder::class],
+            ["version" => 1, "seeder" => Hr\ResposibleTypeSeeder::class],
+            ["version" => 1, "seeder" => Hr\PersonalTypeSeeder::class],
+            ["version" => 1, "seeder" => Hr\NationalitySeeder::class],
+            ["version" => 1, "seeder" => Hr\SelectionTypeSeeder::class],
+            ["version" => 1, "seeder" => Hr\EvaluationCompletionTypeSeeder::class],
+            ["version" => 1, "seeder" => Hr\MilitaryInformationSeesder::class],
+            ["version" => 1, "seeder" => Hr\DependentTypeSeeder::class],
+            ["version" => 1, "seeder" => Hr\AgentTypeSeeder::class],
+            ["version" => 1, "seeder" => Hr\OrganizationCategorySeeder::class],
+
+            // Finance
+            ["version" => 1, "seeder" => Accounting\AccountSeeder::class],
+            ["version" => 2, "seeder" => Accounting\FinancialOperationPatternTypeSeeder::class],
+            ["version" => 1, "seeder" => Accounting\FinancialOperationPatternItemTypesSeeder::class],
+            ["version" => 1, "seeder" => Accounting\Bank\BankSeeder::class],
+
+            ["version" => 3, "seeder" => Accounting\Client\ClientTransactionTypeSeeder::class],
+            ["version" => 4, "seeder" => Accounting\Client\ClientFactorTypeSeeder::class],
+            ["version" => 8, "seeder" => Accounting\Store\StoreSeeder::class],
+
+            ["version" => 5, "seeder" => LineProductStation\ProductFaultPropertyOptionSeeder::class],
+            ["version" => 9, "seeder" => LineProductStation\ProductFaultPropertiesSeeder::class],
+
+            ["version" => 1, "seeder" => Utility\ShippingMethodsSeeder::class],
+            ["version" => 1, "seeder" => Utility\DeliveryPointTypeSeeder::class],
+        ];
+
+        foreach ($seeder_list as $seeder) {
+            //$this->call($seeder["seeder"]);
+            $seeder_last_version = SeederDatabase::where("seeder", $seeder["seeder"])->first();
+            if (!$seeder_last_version || $seeder_last_version->version != $seeder["version"] ||  $seeder["version"] <0) {
+                $this->call($seeder["seeder"]);
+            }
+
+            if (!$seeder_last_version) {
+                SeederDatabase::create($seeder);
+            } else {
+                $seeder_last_version->version = $seeder["version"];
+                $seeder_last_version->save();
+            }
+        }
+
+    }
+}

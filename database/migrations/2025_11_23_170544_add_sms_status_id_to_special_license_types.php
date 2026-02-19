@@ -1,0 +1,29 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::table('special_license_types', function (Blueprint $table) {
+            //
+            $table->integer('sms_status_id')->default(1210)->comment("وضعیت ارسال پیامک برای پست های سازمانی");
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::table('special_license_types', function (Blueprint $table) {
+            //
+        });
+    }
+};

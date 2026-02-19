@@ -1,0 +1,94 @@
+<?php
+
+namespace App\Http\Controllers\LineProductStation;
+
+use App\Http\Controllers\Controller;
+use App\Models\LineProduct\Machine\Machine;
+use App\Models\LineProduct\Machine\MachineStatus;
+use App\Models\LineProduct\Machine\MachineType;
+use App\Models\LineProduct\Station;
+use App\Models\Utility\Option;
+use App\Models\Utility\Status;
+use App\Models\Warehouse\Warehouse;
+use Illuminate\Http\Request;
+
+class MachineController extends Controller {
+
+
+    public function index( MachineType $machine_type ) {
+        $list = Machine:: where( "machine_type_id", $machine_type->id )->withCount('machineProductionChannelTypes')->paginate( 30 );
+        return view( "line_product_station.machine.index", compact( "machine_type", "list") );
+    }
+
+    public function create( MachineType $machine_type ) {
+
+        if ( ! isset($machine_type->machine_module_type) || $machine_type->machine_module_type->machine_production_status_id==0 ||
+
+             $machine_type->machine_module_type->machine_off_reason==0
+        ) {
+            return back()->withErrors( "ماژول ماشین برای گروه ماشین معتبر نمی باشد." );
+        }
+        $status_option = Option::get( "active_status", $machine->active_status->id ?? 0, );
+
+        return view( "line_product_station.machine.create", compact( "machine_type", "status_option", ) );
+    }
+
+    public function store( Request $request, MachineType $machine_type ) {
+
+        $current_machine_count = $machine_type->machine->count();
+
+
+        for ( $i = 1; $i <= $request->count; $i ++ ) {
+            $number_code              = $i + $current_machine_count;
+            $machine                  = new Machine();
+            $machine->station_id      = $machine_type->station->id;
+            $machine->machine_type_id = $machine_type->id;
+            $machine->caption         = $machine_type->caption . " " . $number_code;
+            $machine->number_code     = $number_code;
+            $machine->save();
+            Warehouse::SetMachineWarehouse( $machine ,2);
+            $result = $machine->setStatus(
+                $request->active_status_id,
+                53002,
+                $machine_type->machine_module_type->machine_production_status_id,
+                $machine_type->machine_module_type->machine_off_reason // این مشخصه به اشتباه id ندارد
+            );
+
+            if ( ! $result["result"] ) {
+                return redirect()->back()->withErrors( $result["message"] );
+            }
+        }
+
+        return redirect()->route( "line_product_station.machine.index", $machine_type )->with( [ "success" => "ماشین با موفقیت اضافه شد" ] );
+
+    }
+
+    public function edit( Machine $machine ) {
+
+        $station_option                             = Option::get( "station", $machine->station->id );
+        $status_option                              = Option::get( "active_status", $machine->active_status->id ?? 0, );
+
+        return view( "line_product_station.machine.edit", compact( "station_option", "status_option", "machine" ) );
+
+    }
+
+    public function update( Request $request, Machine $machine ) {
+
+        if ( $request->code == "" || Machine::ExistsCode( $request->code, $machine->id ) ) {
+            return back()->withErrors( "کد ماشین تکراری است" );
+        }
+        // return $request->all();
+        $request["check_inventory_for_allocation"]                     = $request->check_inventory_for_allocation ? 1 : 0;
+        $request["checking_form_not_delivered_at_register_production"] = $request->checking_form_not_delivered_at_register_production ? 1 : 0;
+//         return $request->all();
+        $machine->update( $request->all() );
+        Warehouse::SetMachineWarehouse( $machine,2 );
+        $result = $machine->setStatus( $request->active_status_id, null, null, null );
+        if ( ! $result["result"] ) {
+            return redirect()->back()->withErrors( $result["message"] );
+        }
+
+        return redirect()->route( "line_product_station.machine.index", $machine->machine_type )->with( [ "success" => "اطلاعات با موفقیت ذخیره شد" ] );
+
+    }
+}

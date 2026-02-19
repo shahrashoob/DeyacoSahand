@@ -1,0 +1,1 @@
+@include("goods_kind_process.fabric_raw.production_card.finished_allocation.allocation_data")

@@ -1,0 +1,45 @@
+<?php
+return [
+    "suggested product name"  => "نام پیشنهادی کالا",
+    "goods_kind_id"           => "رسته کالا",
+    "product_service_type_id" => "نوع کالا یا خدمت",
+    "status_id" => "وضعیت",
+    "event_id" => "وضعیت",
+    "country_id"=>"کشور",
+    "province_id"=>"استان",
+    "city_name"=>"شهرستان",
+    "customer_type_id"=>" نوع شخصیت   ",
+    "country_of_nationality_id"=>"تابعیت",
+    "firstname"=>"نام",
+    "lastname"=>"نام خانوادگی",
+    "gender_id"=>"جنسیت",
+    "birth_date"=>"تاریخ تولد",
+    "national_code"=>"کد ملی",
+    "national_code2"=>"شناسه ملی",
+    "register_code"=>"شماره ثبت",
+    "economic_number"=>"شماره اقتصادی",
+
+    "company_name"=>"نام شرکت",
+    "company_ceo_firstname"=>"نام مدیر عامل ",
+    "company_ceo_lastname"=>"نام خانوادگی مدیر عامل ",
+    "company_ceo_gender_id"=>"جنسیت مدیر عامل",
+    "company_ceo_birth_date"=>" تاریخ تولد مدیرعامل ",
+
+    "phone"=>"شماره ثابت / نمابر ",
+    "mobile (without zero)"=>"شماره همراه (بدون صفر) ",
+    "postal_code"=>"کد پستی",
+    "address"=>"نشانی",
+    "date and time"=>"تاریخ و زمان",
+    "action user_id"=>"اقدام کننده",
+
+
+    "file upload for product creation" => "تصویر نمونه کالا ( ۳۰۰*۳۰۰ پیکسل)",
+    "has physical sample"              => "آیا می خواهید نمونه کالا را به کارخانه ارسال کنید؟ ",
+    "yes"                              => "بله",
+    "no"                               => "خیر",
+    "method of sending product"       => "روش تحویل نمونه کالا ",
+    "method of sending product in person"       => "تحویل به صورت حضوری ",
+    "method of sending product in post service"       => "خدمات پستی ",
+    "applicant caption"=>"درخواست دهنده",
+
+];

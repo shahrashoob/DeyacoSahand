@@ -1,0 +1,1 @@
+@include("line_product_station.product.version._property_info")

@@ -1,0 +1,70 @@
+
+.container{
+    /*position:relative;*/
+    /*display:block;*/
+    /*width:600px;*/
+    text-align: right;
+}
+details{
+
+    position:relative;
+    text-align: right;
+    width:auto;
+    height:auto;
+    overflow:hidden;
+    max-height:2.5em !important;
+    transition: all 0.1s ease;
+
+    ::-webkit-details-marker{
+        display:none;
+    }
+    &>summary{
+        position:relative;;
+        margin-top:0.25em;
+        color:#007bff;
+        padding:0.1em 0.5em 0.2em;
+        /*background:#;*/
+    }
+    &>summary:before{
+        content:'';
+        color:#eee;
+        font-size:0.5em;
+        margin-right:0.5em;
+    }
+    &[open]>summary{
+        background:#82B4F9;
+        color:#eee;
+        &:before{
+            content:'';
+            color:#ccc;
+        }
+    }
+}
+
+.folder{
+    margin:0 0 0.5em 0.86em;
+    padding:0.5em 1em 0.5em 1.5em;
+    border-left:.1em #ccc dotted;
+    border-right:.1em #ccc dotted;
+    border-bottom:0.1em #ccc dotted;
+
+    p {
+        margin:0;
+    }
+}
+
+details[open]{
+    height:auto;
+    max-height:99em !important;
+    transition: all 1.2s ease;
+}
+details:not([open]) .folder{
+    height:0px !important;
+
+}
+details table{
+    border:2px solid #a59b9b;
+}
+
+/* نمونه کد استفاده*/
+/*<details open=""> <p>روش محاسبه: </p> <p> </p><table style="text-align: center;margin: auto"><tbody><tr><td>جمع (ریال) </td><td>مبلغ واحد</td><td>مقدار مصرف</td><td>کد کالا</td></tr><tr><td>۲۰,۳۵۵</td><td>۱,۰۸۸,۵۰۰</td><td>۰,۰۱۸۷</td><td>۱۹/۰۱/۰۱/۰۰۰۲</td></tr><tr><td>۱۸,۹۷۱</td><td>۱,۰۱۴,۵۰۰</td><td>۰,۰۱۸۷</td><td>۱۹/۰۱/۰۱/۰۰۰۳</td></tr><tr><td>۲۱,۳۲۷</td><td>۱,۱۴۰,۵۰۰</td><td>۰,۰۱۸۷</td><td>۱۹/۰۱/۰۱/۰۰۰۴</td></tr><tr><td>۱۷,۲۵۱</td><td>۹۲۲,۵۰۰</td><td>۰,۰۱۸۷</td><td>۱۹/۰۱/۰۱/۰۰۰۱</td></tr><tr><td>۶۹,۲۲۷</td><td>۳,۷۰۲,۰۰۰</td><td>۰,۰۱۸۷</td><td>۱۹/۰۲/۰۱/۰۰۰۱</td></tr><tr><td>۴۰,۹۵۸</td><td>۸۱,۹۱۶</td><td>۰,۵</td><td>۰۳/۷</td></tr><tr><td>۱۸۸,۰۸۹</td><td colspan="3">جمع کل (ریال)</td></tr></tbody></table><p></p>  <div class="folder"> <details> <summary>۱۹/۰۱/۰۱/۰۰۰۲ - نخ فيلامنت كرم نخودي ۱۵۰ كد F۰۱۰۰۱</summary></details> <details> <summary>۱۹/۰۱/۰۱/۰۰۰۳ - نخ فيلامنت مشكي ۱۵۰ كد F۰۲۰۰۱</summary></details> <details> <summary>۱۹/۰۱/۰۱/۰۰۰۴ - نخ فيلامنت نارنجي ۱۵۰ كد F۰۳۰۰۱</summary></details> <details> <summary>۱۹/۰۱/۰۱/۰۰۰۱ - نخ فیلامنت کد SD۱۵۰ رنگ سفید</summary></details> <details> <summary>۱۹/۰۲/۰۱/۰۰۰۱ - لمه طلايي MH كد MH۰۰۱</summary></details> <details> <p>روش محاسبه: </p> <p> </p><table style="text-align: center;margin: auto"><tbody><tr><td>جمع (ریال) </td><td>مبلغ واحد</td><td>مقدار مصرف</td><td>کد کالا</td></tr><tr><td>۴۲,۹۰۳</td><td>۱,۰۱۴,۵۰۰</td><td>۰,۰۴۲۲۹</td><td>۱۹/۰۱/۰۱/۰۰۰۳</td></tr><tr><td>۳۹,۰۱۳</td><td>۹۲۲,۵۰۰</td><td>۰,۰۴۲۲۹</td><td>۱۹/۰۱/۰۱/۰۰۰۱</td></tr><tr><td>۸۱,۹۱۶</td><td colspan="3">جمع کل (ریال)</td></tr></tbody></table><p></p>  <div class="folder"> <details> <summary>۱۹/۰۱/۰۱/۰۰۰۳ - نخ فيلامنت مشكي ۱۵۰ كد F۰۲۰۰۱</summary></details> <details> <summary>۱۹/۰۱/۰۱/۰۰۰۱ - نخ فیلامنت کد SD۱۵۰ رنگ سفید</summary></details>  </div> <summary>۰۳/۷ - چله دو رنگ سفید مشکی ۱۵۰ تراکم ۴۸</summary> </details>  </div> <summary>۱۸۸,۰۸۹</summary> </details>*/

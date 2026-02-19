@@ -1,0 +1,67 @@
+<form id="form1" action="{{route("utility.setting.update")}}" method="post"
+      novalidate="novalidate">
+    @csrf
+    <div class="row">
+        @include("component.input._text",["id"=>$values["company_name"]->key,"lable"=>$values["company_name"]->caption,"value"=>$values["company_name"]->string_value])
+        @include("component.input._text",["id"=>$values["company_name_en"]->key,"lable"=>$values["company_name_en"]->caption,"value"=>$values["company_name_en"]->string_value])
+        @include("component.input._text",["id"=>$values["software_name"]->key,"lable"=>$values["software_name"]->caption,"value"=>$values["software_name"]->string_value])
+        @include("component.input._text",["id"=>$values["national_code"]->key,"lable"=>$values["national_code"]->caption,"value"=>$values["national_code"]->string_value])
+        @include("component.input._text",["id"=>$values["economic_number"]->key,"lable"=>$values["economic_number"]->caption,"value"=>$values["economic_number"]->string_value])
+
+
+        @include("component.input._number",["id"=>$values["min_of_charge"]->key,  "label"=>$values["min_of_charge"]->caption,"value"=>$values["min_of_charge"]->integer_value])
+        @include("component.input._number",["id"=>$values["a_in_ax_b_of_sms_cost"]->key,  "label"=>$values["a_in_ax_b_of_sms_cost"]->caption,"value"=>$values["a_in_ax_b_of_sms_cost"]->double_value])
+        @include("component.input._number",["id"=>$values["b_in_ax_b_of_sms_cost"]->key,  "label"=>$values["b_in_ax_b_of_sms_cost"]->caption,"value"=>$values["b_in_ax_b_of_sms_cost"]->integer_value])
+
+        @include("component.input._number",["id"=>$values["min_of_charge_for_reminder"]->key,  "label"=>$values["min_of_charge_for_reminder"]->caption,"value"=>$values["min_of_charge_for_reminder"]->integer_value])
+        @include("component.input._number",["id"=>$values["min_of_charge_for_send_sms"]->key,  "label"=>$values["min_of_charge_for_send_sms"]->caption,"value"=>$values["min_of_charge_for_send_sms"]->integer_value])
+        @include("component.input._number",["id"=>$values["min_of_charge_for_payment"]->key,  "label"=>$values["min_of_charge_for_payment"]->caption,"value"=>$values["min_of_charge_for_payment"]->integer_value])
+
+        {{--        @include("component.input._text",["id"=>$values["unlimited_number"]->key,"lable"=>$values["unlimited_number"]->caption,"value"=>$values["unlimited_number"]->integer_value,"readonly"=>1])--}}
+        @include("component.input._text",["id"=>$values["static_ip"]->key,"lable"=>$values["static_ip"]->caption,"value"=>$values["static_ip"]->string_value])
+
+
+        @include("component.input._radio_box01",["id"=>$values["app_debug"]->key,"label"=>$values["app_debug"]->caption,"value"=>$values["app_debug"]->integer_value,"label0"=>"خیر","label1"=>"بله"])
+
+
+        @include("component.input._radio_box01",["id"=>$values["company_have_separate_financial_software"]->key,"label"=>$values["company_have_separate_financial_software"]->caption,"value"=>$values["company_have_separate_financial_software"]->integer_value,"label0"=>"خیر","label1"=>"بله"])
+        @include("component.input._radio_box01",["id"=>$values["company_have_separate_warehousing_software"]->key,"label"=>$values["company_have_separate_warehousing_software"]->caption,"value"=>$values["company_have_separate_warehousing_software"]->integer_value,"label0"=>"خیر","label1"=>"بله"])
+
+        @include("component.input._radio_box01",["id"=>$values["is_active_sms_module"]->key,"label"=>$values["is_active_sms_module"]->caption,"value"=>$values["is_active_sms_module"]->integer_value,"label0"=>"غیر فعال","label1"=>"فعال"])
+        @include("component.input._text",["id"=>$values["template_entry_sign_out"]->key,"lable"=>$values["template_entry_sign_out"]->caption,"value"=>$values["template_entry_sign_out"]->string_value])
+        @include("component.input._text",["id"=>$values["template_entry_sign_in"]->key,"lable"=>$values["template_entry_sign_in"]->caption,"value"=>$values["template_entry_sign_in"]->string_value])
+
+        @include("component.input._radio_box01",["id"=>$values["company_have_it_unit"]->key,"label"=>$values["company_have_it_unit"]->caption,"value"=>$values["company_have_it_unit"]->string_value,"label0"=>"خیر","label1"=>"بله"])
+
+<<<<<<< HEAD
+        @include("component.input._radio_box01",["id"=>$values["classified_absence_from_regular_working_hours"]->key,"label"=>$values["classified_absence_from_regular_working_hours"]->caption,"value"=>$values["classified_absence_from_regular_working_hours"]->integer_value,"label0"=>"خیر","label1"=>"بله"])
+
+
+=======
+
+        @include("component.input._radio_box01",["id"=>$values["classified_absence_from_regular_working_hours"]->key,"label"=>$values["classified_absence_from_regular_working_hours"]->caption,"value"=>$values["classified_absence_from_regular_working_hours"]->integer_value,"label0"=>"خیر","label1"=>"بله"])
+
+
+
+>>>>>>> 738ab236f1af44b39376c6e666afa6d83150bb95
+        @include("component.input._radio_box01",["id"=>$values["has_active_contract"]->key,"label"=>$values["has_active_contract"]->caption,"value"=>$values["has_active_contract"]->integer_value,"label0"=>"خیر","label1"=>"بله"])
+        @include("component.input._text",["id"=>$values["request_update_at"]->key,"lable"=>$values["request_update_at"]->caption,"value"=>$values["request_update_at"]->string_value])
+
+
+
+{{--        @include("component.input._radio_box01",["id"=>$values["registering_batch_with_packaging_number_module"]->key,"label"=>$values["registering_batch_with_packaging_number_module"]->caption,"value"=>$values["registering_batch_with_packaging_number_module"]->integer_value,"label0"=>"غیرفعال","label1"=>"فعال"])--}}
+
+{{--        @include("component.input._radio_box01",["id"=>$values["check_iso_form_posts_permission"]->key,"label"=>$values["check_iso_form_posts_permission"]->caption,"value"=>$values["check_iso_form_posts_permission"]->integer_value,"label0"=>"خیر","label1"=>"بله"])--}}
+
+
+
+
+
+
+    </div>
+
+
+    <a href="{{route("dashboard")}}" class="btn btn-outline-dark">بازگشت</a>
+    <button type="submit" class="btn btn-primary">ذخیره تغییرات</button>
+
+</form>

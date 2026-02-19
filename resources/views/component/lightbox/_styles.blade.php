@@ -1,0 +1,1 @@
+<link href="{{asset("assets/plugins/lightbox2-2.11.3/dist/css/lightbox.min.css")}}" rel="stylesheet">

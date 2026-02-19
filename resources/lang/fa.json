@@ -1,0 +1,38 @@
+{
+    "local": "fa",
+    "fa":"فارسی"  ,
+    "en":"English"  ,
+    "ar":"عربي",
+    "rtl": "rtl",
+    "text-align": "right",
+
+    "user panel":"پنل کاربری",
+    "customer info box":"اطلاعات مشتری",
+    "customer address box":"اطلاعات آدرس و تماس",
+    "dashobard": "Dashboard",
+    "register_login": "ورود | ثبت نام",
+    "hi!": "سلام!",
+    "please enter your mobile": "لطفا شماره موبایل  خود را وارد کنید",
+    "login": "ورود",
+    "logout": "خروج",
+    "design by deyaco": "طراحی و تولید   شرکت صنعتی دیاکو مهن آریا",
+    "please enter your code": "کد تایید را وارد کنید",
+    "code sms for your number, :mobile": "کد تایید برای شماره :mobile پیامک شد",
+    "confirm code": "تایید",
+    "resent confirm code": "دریافت مجدد کد تایید",
+    "postal_code": "کد پستی",
+    "address": "آدرس",
+
+
+    "product design form, :code": "فرم درخواست طراحی کالا :code",
+    "please send the fabric sample along with the design request form to the address in the design form and enter the postal tracking code in the form below":
+    " لطفا نمونه پارچه را به همراه فرم درخواست طراحی به  آدرس موجود در فرم طراحی  ارسال فرمایید و کد رهگیری مرسولات پستی را در فرم زیر وارد نمایید.",
+    "register tracking code": "ثبت کد رهگیری",
+
+
+
+
+
+
+    "btn back": "بازگشت"
+}

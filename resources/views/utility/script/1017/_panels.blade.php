@@ -1,0 +1,93 @@
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <h5> لیست ماژول های تحویل شیفت </h5>
+        </div>
+        <div class="card-block">
+            <table class="table ">
+                @php $row=0;@endphp
+
+                <tr>
+                    @foreach($shift_delivery_module_list as $item)
+                        @php $key="k".$item->id;@endphp
+                        <td>
+
+                            <input type="checkbox"
+                                   name="data[shift_delivery_module][{{$item->id}}]" value="1"
+                                {{(isset($data["shift_delivery_module"][$item->id]) && $data["shift_delivery_module"][$item->id] ==1)?"checked":"" }}
+                            >
+                            {{$item->caption}}
+
+
+                        </td>
+                        @if($row % 3==2)
+                </tr>
+                <tr>
+                    @endif
+                    @php $row++;@endphp
+                    @endforeach
+                </tr>
+            </table>
+
+        </div>
+        <div class="text-center">
+            {{$posts->links('pagination::bootstrap-4')}}
+        </div>
+    </div>
+</div>
+
+
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header">
+            <h5> لیست پست های سازمان </h5>
+        </div>
+        <div class="card-block">
+            <table class="table table-bordered center">
+                @php $row=0;@endphp
+                <tr>
+                    <th>عنوان پست</th>
+                    <th>عنوان پست</th>
+                    <th>عنوان پست</th>
+                </tr>
+                <tr>
+                    @foreach($posts as $item)
+                        @php $key="k".$item->id;@endphp
+                        <td>
+                            {{$item->caption}}
+
+                            ({{$item->worker()->count()}} نفر)
+                            <br/>
+                            <input type="checkbox"
+                                   name="data[post_sms_template][{{$item->id}}]" value="1"
+                                {{(isset($data["post_sms_template"][$item->id]) && $data["post_sms_template"][$item->id] ==1)?"checked":"" }}
+                            >
+                           ارسال پیامک عدم تحویل شیفت
+
+                        </td>
+                        @if($row % 3==2)
+                </tr>
+                <tr>
+                    @endif
+                    @php $row++;@endphp
+                    @endforeach
+                </tr>
+            </table>
+
+            <div class="float-left">
+                نمايش رکوردهای
+                <b>{{$posts->firstItem()}}</b>
+                تا
+                <b>{{$posts->lastItem()}}</b>
+                از
+                <b>{{$posts->total()}}</b>
+                رکورد موجود
+
+
+            </div>
+        </div>
+        <div class="text-center">
+            {{$posts->links('pagination::bootstrap-4')}}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateContractorsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('contractors', function (Blueprint $table) {
+            $table->id();
+            $table->string("code");
+            $table->foreignId("user_id");
+            $table->string("caption")->comment("عنوان پیمانکاری");
+            $table->string("register_code")->comment("شماره ثبت");
+            $table->string("active_status_id")->comment("وضعیت فعال بودن");
+
+            $table->timestamps();
+        });
+
+        DB::statement("ALTER TABLE `contractors` comment 'جدول لیست پیمانکاران'");
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('contractors');
+    }
+}

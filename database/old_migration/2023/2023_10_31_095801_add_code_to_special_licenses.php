@@ -1,0 +1,33 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class AddCodeToSpecialLicenses extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::table('special_licenses', function (Blueprint $table) {
+            //
+            $table->string("code")->nullable()->after("id")->comment("SpecialLicence");
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::table('special_licenses', function (Blueprint $table) {
+            //
+        });
+    }
+}
