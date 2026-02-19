@@ -20,6 +20,7 @@ class WarehouseTypeSeeder extends Seeder
         [ "id" => 4, "caption" => "انبارک ایستگاه کاری"],
         [ "id" => 5, "caption" => "انبارک خط تولید"],
         [ "id" => 100, "caption" => "فاقد انبارش"], // کالاهایی که انبارش ندارند در بخش bom این مقدار برای نوع انبار آنها ست می شود.
+        [ "id" => 6, "caption" => "انبارک پیمانکار"]
     ];
     private $table = 'warehouse_types';
 
