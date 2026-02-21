@@ -8,7 +8,7 @@ use App\Models\Customer\CustomerAddress;
 use App\Models\File\File;
 use App\Models\HR\Personal\PersonalType;
 use App\Models\LineProduct\LineProductStation;
-use App\Models\LineProduct\Machine\Allocation\MachineAllocationActualConsumption;
+use App\Models\Warehouse\Warehouse;
 use App\Models\LineProduct\Machine\CurrentMachineInput;
 use App\Models\LineProduct\Machine\MachineAllocation;
 use App\Models\LineProduct\Product\BOM\BOM;
@@ -28,6 +28,8 @@ use Haruncpi\LaravelUserActivity\Traits\Loggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
+use App\Models\Contractor\MachineAllocationActualConsumption;
+
 
 class Contractor extends Model
 {
@@ -89,6 +91,37 @@ class Contractor extends Model
         "barcode_algorithm_id"
 
     ];
+
+    public function warehouse()
+    {
+    return $this->belongsTo(Warehouse::class, 'warehouse_id');
+    }
+
+    public static function getWarehouse($contractor)
+    {
+    $contractor = is_object($contractor) ? $contractor : self::find($contractor);
+    
+    if (!$contractor) {
+        return null;
+    }
+    $lastId = Warehouse::latest()->first()->id;
+    $newId = $lastId + 1;
+    if (!$contractor->warehouse_id) {
+        $warehouse = Warehouse::create([
+            'code'=>'DCC'.$newId,
+            'caption'=>'انبارک'.$contractor->caption,
+            'warehouse_type_id' => 6,
+            'belonging_to_id'=> $contractor->id,
+        ]);
+        
+        $contractor->warehouse_id = $warehouse->id;
+        $contractor->save();
+
+        return $warehouse;
+    }
+    return Warehouse::find($contractor->warehouse_id);
+    }
+
     public function image()
     {
         return $this->belongsTo(File::class, "image_id");

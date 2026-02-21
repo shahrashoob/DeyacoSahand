@@ -12,7 +12,7 @@
                         <a class="btn btn-success" href="{{route("contractor.definition.dashboard.create")}}"><i class="fa fa-plus"></i> افزودن پیمانکار جدید </a>
                     </h5>
                 </div>
-                <div class="card-block">
+                <div class="table-responsive text-center">
 
                     <div class="table-responsive">
                         <table class="table table-styling">
@@ -25,6 +25,7 @@
                                 <th> کد ملی/شناسه ملی</th>
                                 <th>تعداد عملیات</th>
                                 <th>مشخصه ها</th>
+                                <th>انبارک پیمانکار</th>
                                 @if($edit_permission_software_system)
                                 <th> تنظیمات سامانه جامع</th>
                                 @endif
@@ -34,6 +35,7 @@
                             @php $row=0;@endphp
                             @foreach($list as $item)
                                 <tr style="{{$item->active_status_id == 1210? "background: #1e3953":""}}">
+                                    
                                     <td>{{++$row}}</td>
 
                                         <td>
@@ -50,6 +52,7 @@
                                                 {{$item->caption}}
                                             @endif
                                         </td>
+                                        
                                     <td>
                                         @if($item->personal_type_id==1)
                                             {{$item->fullName()}}
@@ -76,6 +79,9 @@
                                             {{$item->property()->count()}}  مشخصه
                                         </a>
                                     </td>
+                                    <td>
+                                        {{ $item->warehouse?->caption ?? '-' }}
+                                    </td>
                                     @if($edit_permission_software_system)
                                     <td>
                                         <a href="{{ route('contractor.definition.dashboard.edit_software_system', $item) }}">
@@ -89,7 +95,7 @@
 
                         </table>
                     </div>
-                    <div class="float-left">
+                    <div class="float-left px-2">
                         نمايش رکوردهای
                         <b>{{$list->firstItem()}}</b>
                         تا

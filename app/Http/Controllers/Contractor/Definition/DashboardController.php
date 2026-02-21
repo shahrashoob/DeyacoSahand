@@ -54,6 +54,9 @@ class DashboardController extends Controller
         $edit_permission = $post_user->checkButtonPermission("contractor.definition.dashboard.edit");
         $edit_permission_software_system = $post_user->checkButtonPermission("contractor.definition.dashboard.edit_software_system");
         $list = Contractor::where("code", "like", "%" . $search . "%")->orWhere("caption", "like", "%" . $search . "%")->paginate(50);
+        foreach ($list as $contractor) {
+            Contractor::getWarehouse($contractor);
+        }
         $order_by_Option = Option::OrderBy("contractor", $order_by);
 
         return view($this->route_path . "index", compact("list", "search", "edit_permission_software_system", "order_by", "order_by_Option", 'edit_permission'));
@@ -179,6 +182,7 @@ class DashboardController extends Controller
             'contractor_id' => $contractor->id,
             'address_id' => $address->address->id,
         ]);
+        Contractor::getWarehouse($contractor);
         $address = $contractor->getDefaultAddress();
 
         return redirect()->route($this->route_path . "index")->with(["success" => "یک پیمانکار با موفقیت اضافه شده."]);

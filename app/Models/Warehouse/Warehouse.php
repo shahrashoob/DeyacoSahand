@@ -19,11 +19,17 @@ use Carbon\Carbon;
 use Haruncpi\LaravelUserActivity\Traits\Loggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Contractor\Contractor;
 
 class Warehouse extends Model
 {
     use HasFactory;
     use Loggable;
+
+    public function contractor()
+    {
+    return $this->hasOne(Contractor::class, 'warehouse_id');
+    }
 
     protected $fillable = [
         "code",
