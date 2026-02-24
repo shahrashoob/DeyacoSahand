@@ -104,7 +104,7 @@ class Contractor extends Model
     if (!$contractor) {
         return null;
     }
-    $lastId = Warehouse::latest()->first()->id;
+    $lastId = Warehouse::count();
     $newId = $lastId + 1;
     if (!$contractor->warehouse_id) {
         $warehouse = Warehouse::create([

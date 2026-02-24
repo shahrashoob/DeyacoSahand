@@ -27,7 +27,8 @@ class SmartObject extends Model
         "contour2",
         "contour3",
         "contour4",
-        "status_id"
+        "status_id",
+        "other_id"
     ];
 
     public function status()

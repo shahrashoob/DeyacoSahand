@@ -16,6 +16,8 @@ class SmartObjectTypeSeeder extends Seeder
         //
         [ "id" => 1, "caption" => "دستگاه حضور و غیاب", ],
         [ "id" => 2, "caption" => "باسکول ", ],
+        [ "id"=> 3, "caption"=> "شاسی ثبت تولید", ],
+        [ "id"=> 4, "caption"=> "شاسی ثبت تخلیه بار ", ],
 
     ];
     private $table = 'smart_object_types';

@@ -19,7 +19,7 @@
                             @include("component.input._text",["id"=>"caption",'label'=>"نام شیء","value"=>$smart_object->caption])
                             @include("component.input._text",["id"=>"ip",'label'=>"IP","value"=>$smart_object->ip])
                             @include("component.input._text",["id"=>"port",'label'=>"Port","value"=>$smart_object->port])
-
+                            @include("component.input._text",["id"=>"other_id",'label'=>"کد ماشین آلات","value"=>$smart_object->other_id])
 
                             <div class="w-100"></div>
                             <div class="col-md-6">
@@ -70,10 +70,11 @@
 
 @section("scripts")
     <script>
+      
         $('#form1').validate({
             rules: {
                 "caption": "required",
-                "ip": "required",
+                "other_id":"number",
                 "status_id_auto": "required",
                 "smart_object_type_id_auto": "required",
             }

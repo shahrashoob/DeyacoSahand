@@ -58,6 +58,7 @@ class SmartObjectsController extends Controller
             return back()->withErrors("عنوان شیئ  تکراری است");
         }
         $smart_object = SmartObject::create($request->all());
+
         $smart_object->updateToken();
 
         return redirect()->route($this->route_path . "index")->with(["success" => "یک شیء با موفقیت اضافه شد"]);
